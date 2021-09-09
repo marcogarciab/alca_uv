@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Permission;
 
 class PermisoController extends Controller
 {
+
+    //Constructor para permisos
+    // public function __construct()
+    // {
+    //     $this->middleware(['role:Admin', 'permission:Eliminar']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,7 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        //
+        return view('permiso.index');
     }
 
     /**
@@ -23,7 +31,7 @@ class PermisoController extends Controller
      */
     public function create()
     {
-        //
+        return view('permiso.create');
     }
 
     /**
@@ -34,7 +42,14 @@ class PermisoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:191',
+            'description' => 'required|max:191',
+            'guard_name' => 'required|max:191',
+        ]);
+
+        $permisos = Permission::create($request->all());
+        return redirect()->route('permisos.index')->with('info','Permiso guardado');
     }
 
     /**
@@ -43,9 +58,9 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Permission $permiso)
     {
-        //
+        return view('permiso.show',compact('permiso'));
     }
 
     /**
@@ -54,9 +69,9 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permiso)
     {
-        //
+        return view('permiso.edit', compact('permiso'));
     }
 
     /**
@@ -66,9 +81,16 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permiso)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:191',
+            'description' => 'required|max:191',
+            'guard_name' => 'required|max:191',
+        ]);
+
+        $permiso->update($request->all());
+        return redirect()->route('permisos.index')->with('info','Permiso actualizado');
     }
 
     /**
@@ -77,8 +99,9 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permiso)
     {
-        //
+        $permiso->delete();
+        return redirect()->route('permisos.index')->with('info','Permiso eliminado');
     }
 }
