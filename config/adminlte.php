@@ -238,16 +238,21 @@ return [
 
         // Sidebar items:
        
-        ['header' => 'account_settings'],
+        ['header' => ''],
         [
-            'text' => 'profile',
+            'text' => 'Perfil',
             'url'  => '/user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Permisos',
+            'route'  => 'permisos.index',
+            'icon' => 'fa fa-key',
+        ],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'users.index',
+            'icon' => 'fa fa-users',
         ],
         [
             'text'    => 'multilevel',
@@ -457,5 +462,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
