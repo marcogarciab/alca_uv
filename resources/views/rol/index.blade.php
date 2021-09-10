@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista Permisos')
+@section('title', 'Lista Roles')
 
 @section('content_header')
-    <h1>Permisos</h1>
+    <h1>Roles</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    @livewire('permiso-index')
+    @livewire('rol-index')
 
 @stop
 

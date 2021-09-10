@@ -250,6 +250,11 @@ return [
             'icon' => 'fa fa-key',
         ],
         [
+            'text' => 'Roles',
+            'route'  => 'roles.index',
+            'icon' => 'fas fa-id-card',
+        ],
+        [
             'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fa fa-users',

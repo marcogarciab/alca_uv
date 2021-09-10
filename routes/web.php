@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermisoController;
+use App\Http\Controllers\RolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('users', UserController::class)->names('users');
 
+Route::resource('users', UserController::class)->names('users');
 Route::resource('permisos', PermisoController::class)->names('permisos');
+Route::resource('roles', RolController::class)->names('roles');
