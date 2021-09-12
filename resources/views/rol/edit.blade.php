@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Rol')
+@section('title', 'Editar Usuario')
 
 @section('content_header')
-    <h1>Editar Roles</h1>
+    <h1>Editar Roles Usaurio</h1>
 @stop
 
 @section('content')
 
-{!! Form::model($role,['route' => ['roles.update', $role], 'method' => 'put']) !!}
+{!! Form::model($user,['route' => ['users.update', $user], 'method' => 'put']) !!}
 <div class="form-group">
     {!! Form::label('role', 'Nombre Rol') !!}
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Inserte Nombre de Rol']) !!}
@@ -23,11 +23,11 @@
     {!! Form::text('guard_name', null, ['class' => 'form-control', 'placeholder' => 'Inserte Email']) !!}
 </div>
 
-@foreach ($permissions as $permission )
-    <div>   
+@foreach ($permissions as $permission)
+<div class="form-check form-check-inline">
         <label>
-            {!! Form::checkbox('permissions[]', $permission->id, null, ['class'=>'mr-1']) !!}
-            {{$permission->name}}
+            {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'mr-1 ',]) !!}
+            {{ $permission->description }}
         </label>
     </div>
 @endforeach

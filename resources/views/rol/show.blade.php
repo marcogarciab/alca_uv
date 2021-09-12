@@ -25,7 +25,7 @@
     <div class="form-check form-check-inline">
             <label>
                 {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'mr-1 ','disabled']) !!}
-                {{ $permission->name }}
+                {{ $permission->description }}
             </label>
         </div>
     @endforeach

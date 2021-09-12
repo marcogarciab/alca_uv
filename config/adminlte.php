@@ -260,56 +260,42 @@ return [
             'icon' => 'fa fa-users',
         ],
         [
-            'text'    => 'multilevel',
+            'text'    => 'Cliente',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Cliente Empresas',
                     'url'  => '#',
                 ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                // [
+                //     'text'    => 'level_one',
+                //     'url'     => '#',
+                //     'submenu' => [
+                //         [
+                //             'text' => 'level_two',
+                //             'url'  => '#',
+                //         ],
+                //     ],
+                // ],
+                // [
+                //     'text' => 'level_one',
+                //     'url'  => '#',
+                // ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Notificaciones'],
         [
-            'text'       => 'important',
+            'text'       => 'Importantes',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
+            'text'       => 'Advertencia',
             'icon_color' => 'yellow',
             'url'        => '#',
         ],
         [
-            'text'       => 'information',
+            'text'       => 'Información',
             'icon_color' => 'cyan',
             'url'        => '#',
         ],

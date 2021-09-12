@@ -45,9 +45,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(User $user)
     {
-        return view('roles.show',compact('role'));
+        $roles = Role::all();
+        return view('user.show',compact('user', 'roles'));
     }
 
     /**
