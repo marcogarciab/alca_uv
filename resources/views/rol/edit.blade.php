@@ -9,6 +9,8 @@
 @section('content')
 
 {!! Form::model($user,['route' => ['users.update', $user], 'method' => 'put']) !!}
+
+
 <div class="form-group">
     {!! Form::label('role', 'Nombre Rol') !!}
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Inserte Nombre de Rol']) !!}

@@ -260,29 +260,34 @@ return [
             'icon' => 'fa fa-users',
         ],
         [
-            'text'    => 'Cliente',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Cliente Empresas',
-                    'url'  => '#',
-                ],
-                // [
-                //     'text'    => 'level_one',
-                //     'url'     => '#',
-                //     'submenu' => [
-                //         [
-                //             'text' => 'level_two',
-                //             'url'  => '#',
-                //         ],
-                //     ],
-                // ],
-                // [
-                //     'text' => 'level_one',
-                //     'url'  => '#',
-                // ],
-            ],
+            'text' => 'Clientes',
+            'route'  => 'clientes.index',
+            'icon' => 'fas fa-user-tie',
         ],
+        // [
+        //     'text'    => 'Cliente',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Cliente Empresas',
+        //             'url'  => '#',
+        //         ],
+        //         // [
+        //         //     'text'    => 'level_one',
+        //         //     'url'     => '#',
+        //         //     'submenu' => [
+        //         //         [
+        //         //             'text' => 'level_two',
+        //         //             'url'  => '#',
+        //         //         ],
+        //         //     ],
+        //         // ],
+        //         // [
+        //         //     'text' => 'level_one',
+        //         //     'url'  => '#',
+        //         // ],
+        //     ],
+        // ],
         ['header' => 'Notificaciones'],
         [
             'text'       => 'Importantes',
