@@ -127,6 +127,8 @@ class ClienteController extends Controller
             'observaciones' => request('observaciones'),
             'updated_at' => now(),
         ]);
+
+        $cliente->touch();
         //$cliente->permissions()->sync($request->permissions);
         return redirect()->route('clientes.edit',compact('cliente'))->with('info','Se actualizaron los datos del Cliente');
     }

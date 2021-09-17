@@ -129,7 +129,6 @@ class EmpresaController extends Controller
     public function update(Request $request, Empresa $empresa)
     {
         $validated = $request->validate([
-            
             'razon_social' => 'required|max:100',
             'nombre_comercial' => 'required|max:50',
             'rfc' => 'required|max:13',
@@ -169,7 +168,6 @@ class EmpresaController extends Controller
         ]);
 
         $empresa->touch();
-
         return redirect()->route('empresas.edit',compact('empresa'))->with('info','Empresa Actualizada');
     }
 

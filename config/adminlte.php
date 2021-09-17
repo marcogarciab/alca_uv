@@ -269,6 +269,16 @@ return [
             'route'  => 'empresas.index',
             'icon' => 'far fa-building',
         ],
+        [
+            'text' => 'Normas',
+            'route'  => 'normas.index',
+            'icon' => 'fas fa-list',
+        ],
+        [
+            'text' => 'Tipos Verificación',
+            'route'  => 'verificacion_tipos.index',
+            'icon' => 'far fa-newspaper',
+        ],
         // [
         //     'text'    => 'Cliente',
         //     'icon'    => 'fas fa-fw fa-share',

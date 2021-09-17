@@ -6,6 +6,8 @@ use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\NormaController;
+use App\Http\Controllers\VerificacionTipoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,6 @@ Route::resource('permisos', PermisoController::class)->names('permisos');
 Route::resource('roles', RolController::class)->names('roles');
 Route::resource('clientes', ClienteController::class)->names('clientes');
 Route::resource('empresas', EmpresaController::class)->names('empresas');
+Route::resource('normas', NormaController::class)->names('normas');
+Route::resource('verificacion_tipos', VerificacionTipoController::class)->names('verificacion_tipos');
 
