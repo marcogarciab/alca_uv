@@ -14,7 +14,7 @@ class CreteClientes extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->bigIncrements('id');
             $table->integer('numero');
             $table->string('nombre', 100);
             $table->string('apellido_paterno', 100);

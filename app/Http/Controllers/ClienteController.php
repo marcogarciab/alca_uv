@@ -33,7 +33,6 @@ class ClienteController extends Controller
         
         if ($user->hasRole('Administrador')) {
             $users = User::all()->pluck('name','id');
-           
    
             return view('cliente.create',compact('user', 'users'));
         }
@@ -71,7 +70,7 @@ class ClienteController extends Controller
             'telefono' => request('telefono'),
             'fecha_nacimiento' => request('fecha_nacimiento'),
             'observaciones' => request('observaciones'),
-            'created_at' => request('created_at'),
+            'created_at' => now(),
             'updated_at' => request('updated_at'),
             'user_id' => request('user_id'),
         ]);

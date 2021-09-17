@@ -74,7 +74,7 @@ class Cliente extends Model
      *
      * @var boolean
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     // Scopes...
 
@@ -83,6 +83,19 @@ class Cliente extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+
+    public function empresas()
+    {
+        return $this->hasMany(Empresa::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+
+    return $this->numero . ' ' . $this->nombre . ' ' . $this->apellido_paterno;
+
     }
 
     // Relations ...

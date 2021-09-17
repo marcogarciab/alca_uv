@@ -264,6 +264,11 @@ return [
             'route'  => 'clientes.index',
             'icon' => 'fas fa-user-tie',
         ],
+        [
+            'text' => 'Empresas',
+            'route'  => 'empresas.index',
+            'icon' => 'far fa-building',
+        ],
         // [
         //     'text'    => 'Cliente',
         //     'icon'    => 'fas fa-fw fa-share',
