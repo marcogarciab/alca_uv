@@ -279,6 +279,14 @@ return [
             'route'  => 'verificacion_tipos.index',
             'icon' => 'far fa-newspaper',
         ],
+        [
+            'text' => 'Solicitudes de Propuestas',
+            'route'  => 'solicitud_propuestas.index',
+            'icon' => 'fab fa-telegram-plane',
+        ],
+      
+     
+        
         // [
         //     'text'    => 'Cliente',
         //     'icon'    => 'fas fa-fw fa-share',

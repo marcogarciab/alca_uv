@@ -4,23 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Model\SolicitudPropuesta;
+use App\Models\Empresa;
+use App\Models\Norma;
+use App\Models\VerificacionTipo;
+
 
 /**
- * @property string $nombre
+ * @property int    $numero
+ * @property int    $norma_id
+ * @property int    $verificacion_tipo_id
  * @property int    $created_at
  * @property int    $updated_at
  * @property int    $deleted_at
+ * @property string $path
  */
-class Norma extends Model
+class SolicitudPropuesta extends Model
 {
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'normas';
+    protected $table = 'solicitud_propuestas';
     use SoftDeletes;
+ 
 
     /**
      * The primary key for the model.
@@ -35,7 +43,7 @@ class Norma extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'created_at', 'updated_at', 'deleted_at', 'descripcion'
+        'numero', 'empresa_id', 'norma_id', 'verificacion_tipo_id', 'path', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -53,7 +61,7 @@ class Norma extends Model
      * @var array
      */
     protected $casts = [
-        'nombre' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date', 'descripcion' => 'string',
+        'numero' => 'int', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date',
     ];
 
     /**
@@ -62,7 +70,7 @@ class Norma extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at',
     ];
 
     /**
@@ -76,10 +84,21 @@ class Norma extends Model
 
     // Functions ...
 
-    // Relations ...
 
-    public function solicitud_propuestas()
+    public function empresa()
     {
-        return $this->belongsTo(SolicitudPropuesta::class);
+        return $this->hasOne(Empresa::class);
     }
+
+    public function norma()
+    {
+        return $this->hasOne(Norma::class);
+    }
+
+    public function verificacion_tipo()
+    {
+        return $this->hasOne(VerificacionTipo::class);
+    }
+
+    // Relations ...
 }

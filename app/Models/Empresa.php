@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Cliente;
+use App\Models\SolicitudPropuesta;
 
 /**
  * @property string $razonSocial
@@ -93,6 +94,12 @@ class Empresa extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function solicitud_propuestas()
+    {
+        return $this->belongsTo(SolicitudPropuesta::class);
+    }
+
 
     // Relations ...
 }

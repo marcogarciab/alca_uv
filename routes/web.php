@@ -8,6 +8,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\NormaController;
 use App\Http\Controllers\VerificacionTipoController;
+use App\Http\Controllers\SolicitudPropuestaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,6 @@ Route::resource('clientes', ClienteController::class)->names('clientes');
 Route::resource('empresas', EmpresaController::class)->names('empresas');
 Route::resource('normas', NormaController::class)->names('normas');
 Route::resource('verificacion_tipos', VerificacionTipoController::class)->names('verificacion_tipos');
+Route::resource('solicitud_propuestas', SolicitudPropuestaController::class)->names('solicitud_propuestas');
+
 
