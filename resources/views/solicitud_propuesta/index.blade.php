@@ -13,8 +13,9 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
-
+    @livewire('grafica-solicitud-propuesta-index')
     @livewire('solicitud-propuesta-index')
+   
 
 @stop
 
@@ -23,6 +24,7 @@
 @stop
 
 @section('js')
+    
     <script>
         console.log('');
     </script>
