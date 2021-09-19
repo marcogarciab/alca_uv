@@ -8,7 +8,7 @@
 
 @section('content')
 
-    {!! Form::model($empresa, ['route' => ['permisos.index', $empresa], 'method' => 'get']) !!}
+    {!! Form::model($empresa, ['route' => ['empresas.index', $empresa], 'method' => 'get']) !!}
 
     <div class="row gutters">
 
@@ -225,14 +225,14 @@
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="form-group">
                 {!! Form::label('created_at', 'Fecha de creación Empresa') !!}
-                {!! Form::date('created_at', null, ['class' => 'form-control', 'disabled']) !!}
+                {!! Form::date('created_at', $empresa->created_at, ['class' => 'form-control', 'disabled']) !!}
             </div>
         </div>
 
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="form-group">
                 {!! Form::label('updated_at', 'Fecha de Actualización Empresa') !!}
-                {!! Form::date('updated_at', null, ['class' => 'form-control', 'disabled']) !!}
+                {!! Form::date('updated_at', $empresa->updated_at, ['class' => 'form-control', 'disabled']) !!}
             </div>
         </div>
 

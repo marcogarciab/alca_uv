@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudPropuestas extends Migration
+class CreateEvidenciaTipos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateSolicitudPropuestas extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud_propuestas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('numero');
-            $table->unsignedBigInteger('empresa_id');
-            $table->foreign('empresa_id')->references('id')->on('empresas');
+        Schema::create('evidencia_tipos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->text('descripcion');
             $table->unsignedInteger('norma_id');
             $table->foreign('norma_id')->references('id')->on('normas');
             $table->unsignedInteger('verificacion_tipo_id');
             $table->foreign('verificacion_tipo_id')->references('id')->on('verificacion_tipos');
-            $table->string('path');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +33,6 @@ class CreateSolicitudPropuestas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_propuestas');
+        Schema::dropIfExists('evidencia_tipos');
     }
 }

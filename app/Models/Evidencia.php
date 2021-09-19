@@ -3,34 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Empresa;
-use App\Models\Norma;
-use App\Models\VerificacionTipo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
 /**
- * @property int    $numero
- * @property int    $norma_id
- * @property int    $verificacion_tipo_id
+ * @property string $path
+ * @property int    $evidencia_tipo_id
  * @property int    $created_at
  * @property int    $updated_at
  * @property int    $deleted_at
- * @property string $path
  */
-class SolicitudPropuesta extends Model
+class Evidencia extends Model
 {
     use HasFactory;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'solicitud_propuestas';
-    use SoftDeletes;
- 
+    protected $table = 'evidencias';
 
     /**
      * The primary key for the model.
@@ -45,7 +35,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $fillable = [
-        'numero', 'empresa_id', 'norma_id', 'verificacion_tipo_id', 'path', 'created_at', 'updated_at', 'deleted_at'
+        'path', 'evidencia_tipo_id', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -63,7 +53,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $casts = [
-        'numero' => 'int', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date',
+        'path' => 'string', 'evidencia_tipo_id' => 'int', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
     ];
 
     /**
@@ -72,7 +62,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at',
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -85,22 +75,6 @@ class SolicitudPropuesta extends Model
     // Scopes...
 
     // Functions ...
-
-
-    public function empresas()
-    {
-        return $this->hasOne(Empresa::class);
-    }
-
-    public function norma()
-    {
-        return $this->hasOne(Norma::class);
-    }
-
-    public function verificacion_tipo()
-    {
-        return $this->hasOne(VerificacionTipo::class);
-    }
 
     // Relations ...
 }

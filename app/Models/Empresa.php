@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Cliente;
 use App\Models\SolicitudPropuesta;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 /**
  * @property string $razonSocial
@@ -29,6 +31,7 @@ use App\Models\SolicitudPropuesta;
  */
 class Empresa extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *

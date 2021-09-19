@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property string $nombre
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class VerificacionTipo extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
@@ -73,7 +75,11 @@ class VerificacionTipo extends Model
 
     // Scopes...
 
-    // Functions ...
+   
+    public function SolicitudPropuesta()
+    {
+        return $this->belongsTo(SolicitudPropuesta::class);
+    }
 
     // Relations ...
 }

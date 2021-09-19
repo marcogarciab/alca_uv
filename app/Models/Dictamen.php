@@ -1,36 +1,26 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Empresa;
-use App\Models\Norma;
-use App\Models\VerificacionTipo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
 /**
- * @property int    $numero
- * @property int    $norma_id
- * @property int    $verificacion_tipo_id
- * @property int    $created_at
- * @property int    $updated_at
- * @property int    $deleted_at
- * @property string $path
+ * @property boolean $es_aprobado
+ * @property string  $path
+ * @property int     $created_at
+ * @property int     $updated_at
+ * @property int     $deleted_at
  */
-class SolicitudPropuesta extends Model
+class Dictamen extends Model
 {
     use HasFactory;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'solicitud_propuestas';
-    use SoftDeletes;
- 
+    protected $table = 'dictamenes';
 
     /**
      * The primary key for the model.
@@ -45,7 +35,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $fillable = [
-        'numero', 'empresa_id', 'norma_id', 'verificacion_tipo_id', 'path', 'created_at', 'updated_at', 'deleted_at'
+        'es_aprobado', 'path', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -63,7 +53,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $casts = [
-        'numero' => 'int', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date',
+        'es_aprobado' => 'boolean', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
     ];
 
     /**
@@ -72,7 +62,7 @@ class SolicitudPropuesta extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at', 'deleted_at',
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -85,22 +75,6 @@ class SolicitudPropuesta extends Model
     // Scopes...
 
     // Functions ...
-
-
-    public function empresas()
-    {
-        return $this->hasOne(Empresa::class);
-    }
-
-    public function norma()
-    {
-        return $this->hasOne(Norma::class);
-    }
-
-    public function verificacion_tipo()
-    {
-        return $this->hasOne(VerificacionTipo::class);
-    }
 
     // Relations ...
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreteClientes extends Migration
+class CreateVerificadores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreteClientes extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('numero');
+        Schema::create('verificadores', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nombre', 100);
             $table->string('apellido_paterno', 100);
             $table->string('apellido_materno', 100);
-            $table->string('telefono', 20);
-            $table->date('fecha_nacimiento');
-            $table->text('observaciones');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('serial_certificacion', 100);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +31,6 @@ class CreteClientes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('verificadores');
     }
 }

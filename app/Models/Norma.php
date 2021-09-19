@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Model\SolicitudPropuesta;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property string $nombre
@@ -14,6 +15,7 @@ use App\Model\SolicitudPropuesta;
  */
 class Norma extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *

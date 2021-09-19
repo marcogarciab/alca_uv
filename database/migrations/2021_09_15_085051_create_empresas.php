@@ -17,12 +17,12 @@ class CreateEmpresas extends Migration
             $table->bigIncrements('id');
             $table->string('razon_social', 100);
             $table->string('nombre_comercial', 50);
-            $table->string('rfc', 13);
+            $table->string('rfc', 18);
             $table->string('curp', 18);
             $table->string('calle', 150);
-            $table->smallInteger('num_int');
-            $table->smallInteger('num_ext');
-            $table->smallInteger('codigo_postal');
+            $table->integer('num_int');
+            $table->integer('num_ext');
+            $table->string('codigo_postal', 10);
             $table->string('colonia', 100);
             $table->string('estado', 100);
             $table->string('ciudad_municipio', 100);
@@ -31,7 +31,7 @@ class CreateEmpresas extends Migration
             $table->mediumText('observaciones')->nullable();
             $table->string('nombre_representante', 100)->nullable();
             $table->string('apellidos_representante', 100)->nullable();
-            $table->string('telefono', 15)->nullable();
+            $table->string('telefono', 20)->nullable();
             $table->string('email', 100)->nullable();
             $table->bigInteger('cliente_id')->unsigned();
             $table->foreign('cliente_id')->references('id')->on('clientes');
