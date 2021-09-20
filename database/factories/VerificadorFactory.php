@@ -26,7 +26,7 @@ class VerificadorFactory extends Factory
             'apellido_paterno' => $this->faker->lastName(),
             'apellido_materno' => $this->faker->lastName(),
             'serial_certificacion' => $this->faker->creditCardNumber(),
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

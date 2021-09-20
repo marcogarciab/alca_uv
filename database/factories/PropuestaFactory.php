@@ -27,11 +27,11 @@ class PropuestaFactory extends Factory
             'numero_control' => $this->faker->creditCardNumber(),
             'costo' => $this->faker->numberBetween(),
             'es_aceptada' => $this->faker->boolean(),
-            'fecha_aceptacion' => $this->faker->dateTimeBetween(date_create('2020-01-01'),now()),
+            'fecha_aceptacion' => $this->faker->dateTimeBetween('-1 year', '-10 days'),
             'solicitud_propuesta_id' => SolicitudPropuesta::all()->random()->id,
             'verificadore_id' => Verificador::all()->random()->id,
             'path' => $this->faker->mimeType(),
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

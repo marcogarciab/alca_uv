@@ -32,12 +32,11 @@ class DatabaseSeeder extends Seeder
         VerificacionTipo::factory(2)->create();
         SolicitudPropuesta::factory(1000)->create();
         Verificador::factory(10)->create();
-        Propuesta::factory(1000)->create();
+        Propuesta::factory(700)->create();
         Orden::factory(500)->create();
         Acta::factory(500)->create();
         EvidenciaTipo::factory(40)->create();
-        Evidencia::factory(1500)->create();
+        Evidencia::factory(1000)->create();
         Acta::factory(500);
-
     }
 }

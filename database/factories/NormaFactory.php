@@ -23,7 +23,7 @@ class NormaFactory extends Factory
     {
         return [
             'nombre' => $this->faker->name(),
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

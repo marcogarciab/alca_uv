@@ -29,7 +29,7 @@ class EvidenciaTipoFactory extends Factory
             'descripcion' => $this->faker->text(),
             'norma_id' => Norma::all()->random()->id,
             'verificacion_tipo_id' => VerificacionTipo::all()->random()->id,
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

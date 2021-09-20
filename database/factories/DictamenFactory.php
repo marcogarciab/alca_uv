@@ -26,7 +26,7 @@ class DictamenFactory extends Factory
             'acta_id ' => Acta::all()->random()->id,
             'es_aprobado' => $this->faker->boolean(),
             'path' => $this->faker->mimeType(),
-            'created_at'=>$this->faker->dateTimeBetween(date_create('2020-01-01'),now()),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

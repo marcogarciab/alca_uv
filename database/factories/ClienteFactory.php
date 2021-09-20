@@ -31,7 +31,7 @@ class ClienteFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'fecha_nacimiento' => $this->faker->dateTimeBetween(),
             'observaciones' => $this->faker->text(),
-            'created_at' => $this->faker->dateTimeInInterval(),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', '-10 days'),
             'user_id' => User::all()->unique()->random()->id,
         ];
     }

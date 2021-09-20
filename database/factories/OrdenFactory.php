@@ -25,11 +25,11 @@ class OrdenFactory extends Factory
     {
         return [
             'codigo_servicio' => $this->faker->creditCardNumber(),
-            'fecha_verificacion' => $this->faker->dateTimeBetween(date_create('2020-01-01'),now()),
+            'fecha_verificacion' => $this->faker->dateTimeBetween('-1 year', '-10 days'),
             'propuesta_id' => Propuesta::all()->random()->id,
             'verificadore_id' => Verificador::all()->random()->id,
             'path' => $this->faker->mimeType(),
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }

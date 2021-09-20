@@ -42,7 +42,7 @@ class EmpresaFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->email(),
             'cliente_id' => Cliente::all()->random()->id,
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         
         ];
     }

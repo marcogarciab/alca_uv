@@ -28,7 +28,7 @@ class EvidenciaFactory extends Factory
             'path' => $this->faker->mimeType(),
             'evidencia_tipo_id' => EvidenciaTipo::all()->random()->id,
             'acta_id' => Acta::all()->random()->id,
-            'created_at'=>$this->faker->dateTimeBetween(),
+            'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),
         ];
     }
 }
