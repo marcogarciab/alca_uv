@@ -23,6 +23,7 @@ class ActaFactory extends Factory
     public function definition()
     {
         return [
+            'numero' => $this->faker->creditCardNumber(),
             'alcance_verificacion' => $this->faker->text(),
             'hechos_verificacion' => $this->faker->text(),
             'es_modifica_alcance' => $this->faker->boolean(),

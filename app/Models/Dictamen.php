@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,7 +35,7 @@ class Dictamen extends Model
      * @var array
      */
     protected $fillable = [
-        'es_aprobado', 'path', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
+        'es_aprobado', 'path', 'numero', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -53,7 +53,7 @@ class Dictamen extends Model
      * @var array
      */
     protected $casts = [
-        'es_aprobado' => 'boolean', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
+        'es_aprobado' => 'boolean', 'path' => 'string', 'numero' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
     ];
 
     /**

@@ -43,7 +43,7 @@ class Acta extends Model
      * @var array
      */
     protected $fillable = [
-        'alcance_verificacion', 'hechos_verificacion', 'es_modifica_alcance', 'es_no_conformidad', 'descripcion_no_conformidad', 'descripcion_accion_correctiva', 'observaciones_protesta', 'observaciones_representante', 'fecha_fin', 'path', 'ordene_id', 'created_at', 'updated_at', 'deleted_at'
+        'alcance_verificacion', 'numero','hechos_verificacion', 'es_modifica_alcance', 'es_no_conformidad', 'descripcion_no_conformidad', 'descripcion_accion_correctiva', 'observaciones_protesta', 'observaciones_representante', 'fecha_fin', 'path', 'ordene_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -61,7 +61,7 @@ class Acta extends Model
      * @var array
      */
     protected $casts = [
-        'alcance_verificacion' => 'string', 'hechos_verificacion' => 'string', 'es_modifica_alcance' => 'boolean', 'es_no_conformidad' => 'boolean', 'descripcion_no_conformidad' => 'string', 'descripcion_accion_correctiva' => 'string', 'observaciones_protesta' => 'string', 'observaciones_representante' => 'string', 'fecha_fin' => 'datetime', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
+        'alcance_verificacion' => 'string', 'numero' => 'string','hechos_verificacion' => 'string', 'es_modifica_alcance' => 'boolean', 'es_no_conformidad' => 'boolean', 'descripcion_no_conformidad' => 'string', 'descripcion_accion_correctiva' => 'string', 'observaciones_protesta' => 'string', 'observaciones_representante' => 'string', 'fecha_fin' => 'datetime', 'path' => 'string', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
     ];
 
     /**

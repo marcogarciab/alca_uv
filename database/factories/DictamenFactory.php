@@ -23,7 +23,8 @@ class DictamenFactory extends Factory
     public function definition()
     {
         return [
-            'acta_id ' => Acta::all()->random()->id,
+            'acta_id' => Acta::all()->random()->id,
+            'numero' => $this->faker->creditCardNumber(),
             'es_aprobado' => $this->faker->boolean(),
             'path' => $this->faker->mimeType(),
             'created_at'=>$this->faker->dateTimeBetween('-1 year', '-10 days'),

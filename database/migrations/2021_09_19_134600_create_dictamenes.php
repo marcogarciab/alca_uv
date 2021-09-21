@@ -15,6 +15,7 @@ class CreateDictamenes extends Migration
     {
         Schema::create('dictamenes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numero');
             $table->boolean('es_aprobado', 1)->nullable();
             $table->string('path');
             $table->bigInteger('acta_id')->unsigned();

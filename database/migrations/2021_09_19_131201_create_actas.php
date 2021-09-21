@@ -15,6 +15,7 @@ class CreateActas extends Migration
     {
         Schema::create('actas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numero');
             $table->text('alcance_verificacion');
             $table->text('hechos_verificacion');
             $table->boolean('es_modifica_alcance');

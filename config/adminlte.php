@@ -284,6 +284,18 @@ return [
             'route'  => 'solicitud_propuestas.index',
             'icon' => 'fab fa-telegram-plane',
         ],
+
+        [
+            'text' => 'Verificadores',
+            'route'  => 'verificadores.index',
+            'icon' => 'fas fa-user-secret',
+        ],
+        [
+            'text' => 'Propuestas de Servicio',
+            'route'  => 'propuestas.index',
+            'icon' => 'far fa-handshake',
+        
+        ],
       
      
         

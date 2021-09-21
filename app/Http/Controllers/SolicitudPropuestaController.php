@@ -162,8 +162,9 @@ class SolicitudPropuestaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SolicitudPropuesta $solicitud_propuesta)
     {
-        //
+        $solicitud_propuesta->delete();
+        return redirect()->route('solicitud_propuestas.index')->with('info','Solicitud Propuesta eliminada');
     }
 }

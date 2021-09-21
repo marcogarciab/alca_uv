@@ -6,6 +6,7 @@ use App\Models\Acta;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Cliente;
+use App\Models\Dictamen;
 use App\Models\Empresa;
 use App\Models\Evidencia;
 use App\Models\EvidenciaTipo;
@@ -25,18 +26,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(40)->create();
-        Cliente::factory(30)->create();
-        Empresa::factory(70)->create();
+        User::factory(30)->create();
+        Cliente::factory(20)->create();
+        Empresa::factory(30)->create();
         Norma::factory(2)->create();
         VerificacionTipo::factory(2)->create();
-        SolicitudPropuesta::factory(1000)->create();
+        SolicitudPropuesta::factory(100)->create();
         Verificador::factory(10)->create();
-        Propuesta::factory(700)->create();
-        Orden::factory(500)->create();
-        Acta::factory(500)->create();
-        EvidenciaTipo::factory(40)->create();
-        Evidencia::factory(1000)->create();
-        Acta::factory(500);
+        Propuesta::factory(100)->create();
+        Orden::factory(98)->create();
+        Acta::factory(98)->create();
+        EvidenciaTipo::factory(30)->create();
+        Evidencia::factory(300)->create();
+        Acta::factory(98)->create();
+        Dictamen::factory(98)->create();
     }
 }
