@@ -10,6 +10,7 @@ use App\Http\Controllers\NormaController;
 use App\Http\Controllers\VerificacionTipoController;
 use App\Http\Controllers\SolicitudPropuestaController;
 use App\Http\Controllers\GraficaSolicitudPropuestasController;
+use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PropuestaController;
 use App\Http\Controllers\VerificadorController;
 
@@ -45,6 +46,7 @@ Route::resource('verificacion_tipos', VerificacionTipoController::class)->names(
 Route::resource('solicitud_propuestas', SolicitudPropuestaController::class)->names('solicitud_propuestas');
 Route::resource('verificadores', VerificadorController::class)->names('verificadores');
 Route::resource('propuestas', PropuestaController::class)->names('propuestas');
+Route::resource('ordenes', OrdenController::class)->names('ordenes');
 //Route::get('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');
 
 Route::put('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');

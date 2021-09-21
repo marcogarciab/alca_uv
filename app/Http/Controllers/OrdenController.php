@@ -72,16 +72,16 @@ class OrdenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Orden $orden)
+    public function show(Orden $ordene)
     {
         $propuestas = Propuesta::all()->pluck('numero_control','id');
         $verificadores = Verificador::all()->pluck('nombre','id');
        
-        $url = Storage::url($orden->path);
+        $url = Storage::url($ordene->path);
 
         $url =str_replace("/storage/", "/", $url);
 
-        return view('orden.show',compact('orden','propuestas', 'verificadores','url' ));  
+        return view('orden.show',compact('ordene','propuestas', 'verificadores','url' ));  
     }
 
     /**
@@ -90,16 +90,16 @@ class OrdenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Orden $orden)
+    public function edit(Orden $ordene)
     {
         $propuestas = Propuesta::all()->pluck('numero_control','id');
         $verificadores = Verificador::all()->pluck('nombre','id');
         
-        $url = Storage::url($orden->path);
+        $url = Storage::url($ordene->path);
 
         $url =str_replace("/storage/", "/", $url); 
 
-        return view('orden.edit',compact('orden','propuestas','verificadores', 'url' ));  
+        return view('orden.edit',compact('ordene','propuestas','verificadores', 'url' ));  
     }
 
     /**
@@ -109,7 +109,7 @@ class OrdenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Orden $orden)
+    public function update(Request $request, Orden $ordene)
     {
         $validated = $request->validate([
             'codigo_servicio' => 'required',
@@ -118,7 +118,7 @@ class OrdenController extends Controller
             'verificadore_id' => 'required',
         ]);
 
-        $orden = Orden::find($orden->id);
+        $orden = Orden::find($ordene->id);
 
         if($request->hasFile('path')){
             $archivo =  $request->file('path')->store('/public');
@@ -132,7 +132,7 @@ class OrdenController extends Controller
         $orden->verificadore_id = $request->verificadore_id;
         $orden->save();
 
-        return redirect()->route('ordenes.edit', compact('orden'))->with('info','Se actualizaron los datos de la Orden');
+        return redirect()->route('ordenes.edit', compact('ordene'))->with('info','Se actualizaron los datos de la Orden');
     }
 
     /**

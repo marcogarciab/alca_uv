@@ -296,6 +296,14 @@ return [
             'icon' => 'far fa-handshake',
         
         ],
+        [
+            'text' => 'Órdenes de Servicio',
+            'route'  => 'ordenes.index',
+            'icon' => 'fas fa-file-invoice',
+ 
+        ],
+
+
       
      
         
