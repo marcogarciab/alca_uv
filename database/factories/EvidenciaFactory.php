@@ -25,6 +25,7 @@ class EvidenciaFactory extends Factory
     {
         return [
 
+            'numero' => $this->faker->creditCardNumber(),
             'path' => $this->faker->mimeType(),
             'evidencia_tipo_id' => EvidenciaTipo::all()->random()->id,
             'acta_id' => Acta::all()->random()->id,

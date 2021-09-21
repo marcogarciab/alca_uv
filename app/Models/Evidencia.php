@@ -35,7 +35,7 @@ class Evidencia extends Model
      * @var array
      */
     protected $fillable = [
-        'path', 'evidencia_tipo_id', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
+        'numero','path', 'evidencia_tipo_id', 'acta_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -53,7 +53,7 @@ class Evidencia extends Model
      * @var array
      */
     protected $casts = [
-        'path' => 'string', 'evidencia_tipo_id' => 'int', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
+        'numero' => 'string', 'path' => 'string', 'evidencia_tipo_id' => 'int', 'created_at' => 'date', 'updated_at' => 'date', 'deleted_at' => 'date'
     ];
 
     /**

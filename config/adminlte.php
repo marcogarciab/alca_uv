@@ -303,9 +303,15 @@ return [
  
         ],
         [
-            'text' => 'Actas de Servicio',
+            'text' => 'Actas de Verificación',
             'route'  => 'actas.index',
             'icon' => 'far fa-list-alt',
+ 
+        ],
+        [
+            'text' => 'Evidencias Actas de Verificación',
+            'route'  => 'evidencias.index',
+            'icon' => 'fas fa-file-upload',
  
         ],
 

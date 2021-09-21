@@ -6,6 +6,7 @@ use App\Models\Acta;
 use App\Models\Evidencia;
 use App\Models\EvidenciaTipo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EvidenciaController extends Controller
 {
@@ -41,6 +42,7 @@ class EvidenciaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'numero' => 'required',
             'path' => 'required',
             'evidencia_tipo_id' => 'required',
             'acta_id' => 'required',
@@ -56,6 +58,7 @@ class EvidenciaController extends Controller
             $evidencia = Evidencia::create([ 
                 'evidencia_tipo_id' => request('evidencia_tipo_id'),
                 'acta_id' => request('acta_id'),
+                'numero' => request('numero'),
                 'path' => $url,
             ]);
             
@@ -72,7 +75,12 @@ class EvidenciaController extends Controller
     {
         $evidencia_tipos = EvidenciaTipo::all()->pluck('nombre','id');
         $actas = Acta::all()->pluck('numero','id');
-        return view('evidencia.show',compact('evidencia','evidencia_tipos','actas'));
+
+        $url = Storage::url($evidencia->path);
+
+        $url =str_replace("/storage/", "/", $url);
+
+        return view('evidencia.show',compact('evidencia','evidencia_tipos','actas','url'));
     }
 
     /**
@@ -86,7 +94,12 @@ class EvidenciaController extends Controller
         $evidencia_tipos = EvidenciaTipo::all()->pluck('nombre','id');
         $actas = Acta::all()->pluck('numero','id');
         
-        return view('evidencia_tipo.create', compact('evidencia','normas','evidencia_tipos'));
+
+        $url = Storage::url($evidencia->path);
+
+        $url =str_replace("/storage/", "/", $url);
+
+        return view('evidencia.edit', compact('evidencia','actas','evidencia_tipos','url'));
     }
 
     /**
@@ -101,6 +114,7 @@ class EvidenciaController extends Controller
         $validated = $request->validate([
             'path' => 'required',
             'evidencia_tipo_id' => 'required',
+            'numero' => 'required',
             'acta_id' => 'required',
         ]);
 
@@ -111,7 +125,7 @@ class EvidenciaController extends Controller
             $url = str_replace("public", "storage", $archivo);
             $evidencia->path = $url;
         }
-
+        $evidencia->numero = $request->numero;
         $evidencia->evidencia_tipo_id = $request->evidencia_tipo_id;
         $evidencia->acta_id = $request->acta_id;
         $evidencia->save();

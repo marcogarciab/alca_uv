@@ -7,6 +7,7 @@ use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EvidenciaController;
 use App\Http\Controllers\NormaController;
 use App\Http\Controllers\VerificacionTipoController;
 use App\Http\Controllers\SolicitudPropuestaController;
@@ -49,6 +50,7 @@ Route::resource('verificadores', VerificadorController::class)->names('verificad
 Route::resource('propuestas', PropuestaController::class)->names('propuestas');
 Route::resource('ordenes', OrdenController::class)->names('ordenes');
 Route::resource('actas', ActaController::class)->names('actas');
+Route::resource('evidencias', EvidenciaController::class)->names('evidencias');
 //Route::get('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');
 
 Route::put('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');

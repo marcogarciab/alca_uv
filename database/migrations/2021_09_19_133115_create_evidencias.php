@@ -15,6 +15,7 @@ class CreateEvidencias extends Migration
     {
         Schema::create('evidencias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numero');
             $table->string('path');
             $table->unsignedInteger('evidencia_tipo_id');
             $table->foreign('evidencia_tipo_id')->references('id')->on('evidencia_tipos');
