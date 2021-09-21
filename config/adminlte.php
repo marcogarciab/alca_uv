@@ -302,6 +302,12 @@ return [
             'icon' => 'fas fa-file-invoice',
  
         ],
+        [
+            'text' => 'Actas de Servicio',
+            'route'  => 'actas.index',
+            'icon' => 'far fa-list-alt',
+ 
+        ],
 
 
       

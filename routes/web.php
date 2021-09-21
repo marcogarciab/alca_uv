@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermisoController;
@@ -47,6 +48,7 @@ Route::resource('solicitud_propuestas', SolicitudPropuestaController::class)->na
 Route::resource('verificadores', VerificadorController::class)->names('verificadores');
 Route::resource('propuestas', PropuestaController::class)->names('propuestas');
 Route::resource('ordenes', OrdenController::class)->names('ordenes');
+Route::resource('actas', ActaController::class)->names('actas');
 //Route::get('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');
 
 Route::put('grafica_solicitud_propuestas/{parameter?}', [GraficaSolicitudPropuestasController::class, 'index'])->name('grafica_solicitud_propuestas.index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Acta;
 use App\Models\Orden;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActaController extends Controller
 {
@@ -41,14 +42,26 @@ class ActaController extends Controller
             'numero' => 'required',
             'alcance_verificacion' => 'required',
             'hechos_verificacion' => 'required',
-            'es_modifica_alcance' => 'required',
-            'es_no_conformidad' => 'required',
             'fecha_fin' => 'required',
             'path' => 'required',
-            'ordene_id ' => 'required',
+            'ordene_id' => 'required',
         ]);
 
         $url = null;
+
+        if ($request->es_modifica_alcance) {
+            $request->es_modifica_alcance = true;
+        }
+        else {
+            $request->es_modifica_alcance = false;
+        }
+
+        if ($request->es_no_conformidad) {
+            $request->es_no_conformidad = true;
+        }
+        else {
+            $request->es_no_conformidad = false;
+        }
 
         if ($request->hasFile('path')) {
             $archivo =  $request->file('path')->store('/public');
@@ -59,8 +72,8 @@ class ActaController extends Controller
                 'numero' => request('numero'),
                 'alcance_verificacion' => request('alcance_verificacion'),
                 'hechos_verificacion' => request('hechos_verificacion'),
-                'es_modifica_alcance' => request('es_modifica_alcance'),
-                'es_no_conformidad' => request('es_no_conformidad'),
+                'es_modifica_alcance' =>  $request->es_modifica_alcance,
+                'es_no_conformidad' => $request->es_no_conformidad,
                 'fecha_fin' => request('fecha_fin'),
                 'ordene_id' => request('ordene_id'),
                 'descripcion_no_conformidad' => request('descripcion_no_conformidad'),
@@ -82,7 +95,13 @@ class ActaController extends Controller
     public function show(Acta $acta)
     {
         $ordenes = Orden::all()->pluck('codigo_servicio','id');
-        return view('acta.show',compact('acta','ordenes'));
+
+
+        $url = Storage::url($acta->path);
+
+        $url =str_replace("/storage/", "/", $url);
+
+        return view('acta.show',compact('acta','ordenes','url'));
     }
 
     /**
@@ -94,7 +113,12 @@ class ActaController extends Controller
     public function edit(Acta $acta)
     {
         $ordenes = Orden::all()->pluck('codigo_servicio','id');
-        return view('acta.create', compact('acta','ordenes'));
+
+        $url = Storage::url($acta->path);
+
+        $url =str_replace("/storage/", "/", $url);
+
+        return view('acta.edit', compact('acta','ordenes','url'));
     }
 
     /**
@@ -106,23 +130,37 @@ class ActaController extends Controller
      */
     public function update(Request $request, Acta $acta)
     {
+//;
+//return $request->all();
         $validated = $request->validate([
             'numero' => 'required',
             'alcance_verificacion' => 'required',
             'hechos_verificacion' => 'required',
-            'es_modifica_alcance' => 'required',
-            'es_no_conformidad' => 'required',
             'fecha_fin' => 'required',
             'path' => 'required',
-            'ordene_id ' => 'required',
+            'ordene_id' => 'required',
         ]);
 
         $acta = Acta::find($acta->id);
-
+        //return $request->all();
         if($request->hasFile('path')){
             $archivo =  $request->file('path')->store('/public');
             $url = str_replace("public", "storage", $archivo);
             $acta->path = $url;
+        }
+
+        if ($request->has('es_modifica_alcance') == 1) {
+            $request->es_modifica_alcance = true;
+        }
+        else {
+            $request->es_modifica_alcance = false;
+        }
+
+        if ($request->has('es_no_conformidad') == 1) {
+            $request->es_no_conformidad = true;
+        }
+        else {
+            $request->es_no_conformidad = false;
         }
 
         $acta->numero = $request->numero;
@@ -130,6 +168,10 @@ class ActaController extends Controller
         $acta->hechos_verificacion = $request->hechos_verificacion;
         $acta->es_modifica_alcance = $request->es_modifica_alcance;
         $acta->es_no_conformidad = $request->es_no_conformidad;
+        $acta->descripcion_no_conformidad = $request->descripcion_no_conformidad;
+        $acta->descripcion_accion_correctiva = $request->descripcion_accion_correctiva;
+        $acta->observaciones_protesta = $request->observaciones_protesta;
+        $acta->observaciones_representante = $request->observaciones_representante;
         $acta->fecha_fin = $request->fecha_fin;
         $acta->ordene_id = $request->ordene_id;
         $acta->save();
@@ -146,6 +188,6 @@ class ActaController extends Controller
     public function destroy(Acta $acta)
     {
         $acta->delete();
-        return redirect()->route('ordenes.index')->with('info','Acta eliminada');
+        return redirect()->route('actas.index')->with('info','Acta eliminada');
     }
 }
