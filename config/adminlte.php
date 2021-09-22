@@ -248,71 +248,94 @@ return [
             'text' => 'Permisos',
             'route'  => 'permisos.index',
             'icon' => 'fa fa-key',
+            'can'  => 'permisos.index',
         ],
         [
             'text' => 'Roles',
             'route'  => 'roles.index',
             'icon' => 'fas fa-id-card',
+            'can'  => 'roles.index',
         ],
         [
             'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fa fa-users',
+            'can'  => 'users.index',
         ],
         [
             'text' => 'Clientes',
             'route'  => 'clientes.index',
             'icon' => 'fas fa-user-tie',
+            'can'  => 'clientes.index',
+        ],
+        [
+            'text' => 'Cliente',
+            'url'  => '/cliente',
+            'icon' => 'fas fa-user-tie',
+            // 'can'  => 'cliente.save',
+           
         ],
         [
             'text' => 'Empresas',
             'route'  => 'empresas.index',
             'icon' => 'far fa-building',
+            'can'  => 'empresas.index',
         ],
         [
             'text' => 'Normas',
             'route'  => 'normas.index',
             'icon' => 'fas fa-list',
+            'can'  => 'normas.index',
         ],
         [
             'text' => 'Tipos Verificación',
             'route'  => 'verificacion_tipos.index',
             'icon' => 'far fa-newspaper',
+            'can'  => 'verificacion_tipos.index',
         ],
         [
             'text' => 'Solicitudes de Propuestas',
             'route'  => 'solicitud_propuestas.index',
             'icon' => 'fab fa-telegram-plane',
+            'can'  => 'solicitud_propuestas.index',
         ],
 
         [
             'text' => 'Verificadores',
             'route'  => 'verificadores.index',
             'icon' => 'fas fa-user-secret',
+            'can'  => 'verificadores.index',
         ],
         [
             'text' => 'Propuestas de Servicio',
             'route'  => 'propuestas.index',
             'icon' => 'far fa-handshake',
+            'can'  => 'propuestas.index',
         
         ],
         [
             'text' => 'Órdenes de Servicio',
             'route'  => 'ordenes.index',
             'icon' => 'fas fa-file-invoice',
- 
+            'can'  => 'ordenes.index',
         ],
         [
             'text' => 'Actas de Verificación',
             'route'  => 'actas.index',
             'icon' => 'far fa-list-alt',
- 
+            'can'  => 'actas.index',
         ],
         [
             'text' => 'Evidencias Actas de Verificación',
             'route'  => 'evidencias.index',
             'icon' => 'fas fa-file-upload',
- 
+            'can'  => 'evidencias.index',
+        ],
+        [
+            'text' => 'Dictámenes de Verificación',
+            'route'  => 'dictamenes.index',
+            'icon' => 'fas fa-file-signature',
+            'can'  => 'dictamenes.index',
         ],
 
 

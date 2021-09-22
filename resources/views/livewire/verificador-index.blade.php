@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -10,11 +10,12 @@
                 </span>
             </div>
         </div>
+        @can('verificadores.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('verificadores.create') }}">Crear</a></td>
+            </div>
+        @endcan
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('verificadores.create') }}">Crear</a></td>
-        </div>        
-        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -27,16 +28,21 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($verificadore as $verificador)
+                        @foreach ($verificadores as $verificador)
 
-                        <tr>
-                            <td>{{ $verificador->nombre }}</td>
-                            <td>{{ $verificador->serial_certificacion }}</td>
-                            <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                    href="{{ route('verificadores.show', $verificador->id) }}">Mostrar</a></td>
-                            <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                    href="{{ route('verificadores.edit', $verificador->id) }}">Editar</a></td>
-                            <td width="10px">
+                            <tr>
+                                <td>{{ $verificador->nombre }}</td>
+                                <td>{{ $verificador->serial_certificacion }}</td>
+                                @can('verificadores.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('verificadores.show', $verificador->id) }}">Mostrar</a></td>
+                                @endcan
+
+                                @can('verificadores.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('verificadores.edit', $verificador->id) }}">Editar</a></td>
+                                @endcan
+                                {{-- <td width="10px">
                                 <form action="{{ route('verificadores.destroy', $verificador->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
@@ -44,8 +50,8 @@
                                 </form>
                                 
                                 
-                            </td>
-                        </tr>
+                            </td> --}}
+                            </tr>
 
                         @endforeach
 
@@ -55,7 +61,7 @@
         </div>
 
         <div class="card-footer">
-        {{$verificadore-> links()}}
+            {{ $verificadores->links() }}
         </div>
     </div>
 

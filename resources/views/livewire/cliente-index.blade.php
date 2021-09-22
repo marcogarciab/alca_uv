@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -11,10 +11,14 @@
             </div>
         </div>
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('clientes.create') }}">Crear</a></td>
-        </div>
-        
+
+        @can('clientes.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('clientes.create') }}">Crear</a></td>
+            </div>
+        @endcan
+
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -33,10 +37,18 @@
                             <tr>
                                 <td>{{ $cliente->numero }}</td>
                                 <td>{{ $cliente->nombre }}</td>
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('clientes.show', $cliente->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('clientes.edit', $cliente->id) }}">Editar</a></td>
+
+                                @can('clientes.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('clientes.show', $cliente->id) }}">Mostrar</a></td>
+                                @endcan
+
+
+                                @can('clientes.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('clientes.edit', $cliente->id) }}">Editar</a></td>
+                                @endcan
+
                                 {{-- <td width="10px">
                                     <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST">
                                     @csrf
@@ -54,7 +66,7 @@
         </div>
 
         <div class="card-footer">
-        {{$clientes-> links()}}
+            {{ $clientes->links() }}
         </div>
     </div>
 

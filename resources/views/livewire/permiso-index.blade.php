@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -10,11 +10,12 @@
                 </span>
             </div>
         </div>
+        @can('permisos.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('permisos.create') }}">Crear</a></td>
+            </div>
+        @endcan
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('permisos.create') }}">Crear</a></td>
-        </div>
-        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -33,19 +34,26 @@
                             <tr>
                                 <td>{{ $permiso->name }}</td>
                                 <td>{{ $permiso->description }}</td>
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('permisos.show', $permiso->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('permisos.edit', $permiso->id) }}">Editar</a></td>
-                                <td width="10px">
-                                    <form action="{{ route('permisos.destroy', $permiso->id) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
-                                    
-                                    
-                                </td>
+                                @can('permisos.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('permisos.show', $permiso->id) }}">Mostrar</a></td>
+                                @endcan
+                                @can('permisos.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('permisos.edit', $permiso->id) }}">Editar</a></td>
+                                @endcan
+                                @can('permisos.destroy')
+                                    <td width="10px">
+                                        <form action="{{ route('permisos.destroy', $permiso->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </td>
+                                @endcan
+
+
+
                             </tr>
 
                         @endforeach
@@ -56,7 +64,7 @@
         </div>
 
         <div class="card-footer">
-        {{$permisos-> links()}}
+            {{ $permisos->links() }}
         </div>
     </div>
 

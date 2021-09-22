@@ -8,7 +8,13 @@
 
 @section('content')
 
-{!! Form::model($user,['route' => ['users.update', $user], 'method' => 'put']) !!}
+@if (session('info'))
+<div class="alert alert-success">
+    <strong>{{ session('info') }}</strong>
+</div>
+@endif
+
+{!! Form::model($role,['route' => ['roles.update', $role], 'method' => 'put']) !!}
 
 
 <div class="form-group">

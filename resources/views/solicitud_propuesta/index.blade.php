@@ -13,8 +13,13 @@
             <strong>{{ session('info') }}</strong>
         </div>
     @endif
+
+    @can('grafica_solicitud_propuestas')
     @livewire('grafica-solicitud-propuesta-index')
+    
+    @endcan
     @livewire('solicitud-propuesta-index')
+  
    
 
 @stop

@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -11,10 +11,13 @@
             </div>
         </div>
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('roles.create') }}">Crear</a></td>
-        </div>
-        
+        @can('roles.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('roles.create') }}">Crear</a></td>
+            </div>
+        @endcan
+
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -31,20 +34,26 @@
 
                             <tr>
                                 <td>{{ $role->name }}</td>
-                           
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('roles.show', $role->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('roles.edit', $role->id) }}">Editar</a></td>
-                                <td width="10px">
-                                    <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
-                                    
-                                    
-                                </td>
+                                @can('roles.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('roles.show', $role->id) }}">Mostrar</a></td>
+                                @endcan
+
+                                @can('roles.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm" @endcan @can('roles.create')
+                                            href="{{ route('roles.edit', $role->id) }}">Editar</a>
+                                    </td>
+                                @endcan
+
+                                @can('roles.create')
+                                    <td width="10px">
+                                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </td>
+                                @endcan
                             </tr>
 
                         @endforeach
@@ -55,7 +64,7 @@
         </div>
 
         <div class="card-footer">
-        {{$roles-> links()}}
+            {{ $roles->links() }}
         </div>
     </div>
 

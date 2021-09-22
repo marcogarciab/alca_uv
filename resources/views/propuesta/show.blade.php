@@ -71,8 +71,8 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                        {!! Form::label('es_aceptada', '¿Acepta la Propuesta?') !!}
-                        <div>{!! Form::checkbox('es_aceptada', $propuesta->es_aceptada, ['class' => 'form-control', 'placeholder' => '', 'disabled']) !!}</div>
+                        {!! Form::label('es_aceptada', '¿Es Aprobada?') !!}
+                        {!! Form::checkbox('es_aceptada', null, $propuesta->es_aceptada) !!}
                     </div>
                 </div>
 

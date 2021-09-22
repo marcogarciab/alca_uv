@@ -89,7 +89,7 @@ class SolicitudPropuesta extends Model
 
     public function empresas()
     {
-        return $this->hasOne(Empresa::class);
+        return $this->hasMany(Empresa::class);
     }
 
     public function norma()

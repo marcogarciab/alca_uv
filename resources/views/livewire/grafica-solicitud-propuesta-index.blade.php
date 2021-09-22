@@ -1,6 +1,9 @@
+
+
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Análisis Solicitudes
 </button>
+
 
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -8,7 +11,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Relación Tiempo Solicitudes Propuestas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -41,7 +44,7 @@
                 </div>
                 <br>
 
-                {!! Form::submit('Editar Permiso', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Generar Gráfica', ['class' => 'btn btn-primary']) !!}
 
                 {!! Form::close() !!}
 

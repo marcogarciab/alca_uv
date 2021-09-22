@@ -30,7 +30,8 @@ class SolicitudPropuestaFactory extends Factory
             'norma_id' => Norma::all()->random()->id,
             'verificacion_tipo_id' => VerificacionTipo::all()->random()->id,
             'path' => $this->faker->mimeType(),
-            'created_at' => $this->faker->dateTimeBetween('-1 year', '-10 days'),
+            'created_at' => $this->faker->dateTimeBetween(date_create('2015-01-01'),now()),
+            
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
+use Spatie\Permission\Models\Role;
 
 class ClienteController extends Controller
 {
@@ -49,6 +50,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+       
         $validated = $request->validate([
             'nombre' => 'required|max:100',
             'apellido_paterno' => 'required|max:100',
@@ -58,6 +60,20 @@ class ClienteController extends Controller
             'observaciones' => 'required|max:300',
             'user_id' => 'required|unique:clientes',
         ]);
+
+        $user_id = Auth::id();
+        $user = new User();
+        $user->id = $user_id;
+       
+        if ($user->hasRole('Administrador')) {
+
+        }
+        else {
+
+            $user = User::find($user->id);
+            $role = Role::where('name','Cliente')->first();
+            $user->assignRole($role);
+        }
 
         $ultimo_cliente = Cliente::max('numero');
 
@@ -74,6 +90,7 @@ class ClienteController extends Controller
             'updated_at' => request('updated_at'),
             'user_id' => request('user_id'),
         ]);
+
 
         return redirect()->route('clientes.edit',compact('cliente'))->with('info','Cliente guardado');
     }
@@ -129,6 +146,21 @@ class ClienteController extends Controller
         ]);
 
         $cliente->touch();
+        
+        $user_id = Auth::id();
+        $user = new User();
+        $user->id = $user_id;
+
+        if ($user->hasRole('Administrador')) {
+
+        }
+        else {
+
+            $user = User::find($user->id);
+            $role = Role::where('name','Cliente')->first();
+            $user->assignRole($role);
+        }
+
         //$cliente->permissions()->sync($request->permissions);
         return redirect()->route('clientes.edit',compact('cliente'))->with('info','Se actualizaron los datos del Cliente');
     }
@@ -142,5 +174,12 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function save($id)
+    {
+        return 'hola';
     }
 }

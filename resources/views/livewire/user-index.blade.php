@@ -29,10 +29,15 @@
                             <tr>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->name }}</td>
+                                @can('users.show')
                                 <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('users.show', $user->id) }}">Mostrar</a></td>
+                                    href="{{ route('users.show', $user->id) }}">Mostrar</a></td>
+                                @endcan
+                                @can('users.show')
                                 <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('users.edit', $user->id) }}">Editar</a></td>
+                                    href="{{ route('users.edit', $user->id) }}">Editar</a></td>
+                                @endcan
+                                
                                 {{-- <td width="10px">
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                     @csrf

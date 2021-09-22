@@ -98,9 +98,9 @@ class Empresa extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function solicitud_propuestas()
+    public function solicitud_propuesta()
     {
-        return $this->belongsTo(SolicitudPropuesta::class);
+        return $this->hasMany(SolicitudPropuesta::class);
     }
 
 

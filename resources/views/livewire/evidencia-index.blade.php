@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -10,11 +10,13 @@
                 </span>
             </div>
         </div>
+        @can('evidencias.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('evidencias.create') }}">Crear</a></td>
+            </div>
+        @endcan
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('evidencias.create') }}">Crear</a></td>
-        </div>
-        
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -33,10 +35,17 @@
                             <tr>
                                 <td>{{ $evidencia->numero }}</td>
                                 <td>{{ $evidencia->created_at }}</td>
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('evidencias.show', $evidencia->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('evidencias.edit', $evidencia->id) }}">Editar</a></td>
+                                @can('evidencias.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('evidencias.show', $evidencia->id) }}">Mostrar</a></td>
+                                @endcan
+
+
+                                @can('evidencias.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('evidencias.edit', $evidencia->id) }}">Editar</a></td>
+                                @endcan
+
                                 {{-- <td width="10px">
                                     <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
                                     @csrf
@@ -54,7 +63,7 @@
         </div>
 
         <div class="card-footer">
-        {{$evidencias-> links()}}
+            {{ $evidencias->links() }}
         </div>
     </div>
 

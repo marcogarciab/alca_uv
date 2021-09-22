@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista Actas Servicios')
+@section('title', 'Lista Dictámenes')
 
 @section('content_header')
-    <h1>Actas de Verificación</h1>
+    <h1>Dictámenes</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
         </div>
     @endif
     {{-- @livewire('grafica-solicitud-propuesta-index') --}}
-    @livewire('acta-index')
+    @livewire('dictamen-index')
    
 
 @stop

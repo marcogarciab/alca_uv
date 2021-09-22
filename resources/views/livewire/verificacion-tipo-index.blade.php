@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -11,10 +11,13 @@
             </div>
         </div>
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('verificacion_tipos.create') }}">Crear</a></td>
-        </div>
-        
+        @can('verificacion_tipos.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('verificacion_tipos.create') }}">Crear</a></td>
+            </div>
+        @endcan
+
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -31,11 +34,17 @@
 
                             <tr>
                                 <td>{{ $verificacion_tipo->nombre }}</td>
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('verificacion_tipos.show', $verificacion_tipo->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('verificacion_tipos.edit', $verificacion_tipo->id) }}">Editar</a></td>
-                                <td width="10px">
+                                @can('verificacion_tipos.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('verificacion_tipos.show', $verificacion_tipo->id) }}">Mostrar</a>
+                                    </td>
+                                @endcan
+                                @can('verificacion_tipos.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('verificacion_tipos.edit', $verificacion_tipo->id) }}">Editar</a>
+                                    </td>
+                                @endcan
+                                {{-- <td width="10px">
                                     <form action="{{ route('verificacion_tipos.destroy', $verificacion_tipo->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
@@ -43,7 +52,7 @@
                                     </form>
                                     
                                     
-                                </td>
+                                </td> --}}
                             </tr>
 
                         @endforeach
@@ -54,7 +63,7 @@
         </div>
 
         <div class="card-footer">
-        {{$verificacion_tipos-> links()}}
+            {{ $verificacion_tipos->links() }}
         </div>
     </div>
 

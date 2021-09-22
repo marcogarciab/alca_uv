@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\SolicitudPropuesta;
 use App\Models\Norma;
 use App\Models\VerificacionTipo;
 use App\Models\Empresa;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SolicitudPropuestaController extends Controller
@@ -28,7 +31,20 @@ class SolicitudPropuestaController extends Controller
      */
     public function create()
     {
-        $empresas = Empresa::all()->pluck('razon_social','id');
+
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+       
+        if ($user->hasRole('Administrador')) {
+            $empresas = Empresa::all()->pluck('razon_social','id');
+        }
+        else {
+
+            $cliente = Cliente::where('user_id', $user_id)->first();
+            $empresas = Empresa::where('cliente_id', $cliente->id)->pluck('razon_social','id');
+            
+        }
+
         $normas = Norma::all()->pluck('nombre','id');
         $verificacion_tipos = VerificacionTipo::all()->pluck('nombre','id');
         

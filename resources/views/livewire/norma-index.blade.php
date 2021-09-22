@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        
+
         <div class="card-header">
             <div class="input-group">
                 <input wire:model="search" id="search" class="form-control border-end-0 border rounded-pill"
@@ -10,11 +10,13 @@
                 </span>
             </div>
         </div>
+        @can('normas.create')
+            <div class="card-header">
+                <td width="10px"> <a class="btn btn-primary" href="{{ route('normas.create') }}">Crear</a></td>
+            </div>
+        @endcan
 
-        <div class="card-header">
-            <td width="10px"> <a class="btn btn-primary" href="{{ route('normas.create') }}">Crear</a></td>
-        </div>
-        
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -33,11 +35,15 @@
                             <tr>
                                 <td>{{ $norma->nombre }}</td>
                                 <td>{{ $norma->descripcion }}</td>
-                                <td width="10px"> <a class="btn btn btn-info btn-sm"
-                                        href="{{ route('normas.show', $norma->id) }}">Mostrar</a></td>
-                                <td width="10px"> <a class="btn btn btn-secondary btn-sm"
-                                        href="{{ route('normas.edit', $norma->id) }}">Editar</a></td>
-                                <td width="10px">
+                                @can('normas.show')
+                                    <td width="10px"> <a class="btn btn btn-info btn-sm"
+                                            href="{{ route('normas.show', $norma->id) }}">Mostrar</a></td>
+                                @endcan
+                                @can('normas.edit')
+                                    <td width="10px"> <a class="btn btn btn-secondary btn-sm"
+                                            href="{{ route('normas.edit', $norma->id) }}">Editar</a></td>
+                                @endcan
+                                {{-- <td width="10px">
                                     <form action="{{ route('normas.destroy', $norma->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
@@ -45,7 +51,7 @@
                                     </form>
                                     
                                     
-                                </td>
+                                </td> --}}
                             </tr>
 
                         @endforeach
@@ -56,7 +62,7 @@
         </div>
 
         <div class="card-footer">
-        {{$normas-> links()}}
+            {{ $normas->links() }}
         </div>
     </div>
 

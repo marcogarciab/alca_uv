@@ -12,16 +12,32 @@ class GraficaSolicitudPropuestasController extends Controller
 {
     public function index(Request $request)
     {
+
         $usermcount = [];
         $data_Arr = [];
 
         if ($request->tipo==0) {
+
+        if ($request->empresa_id>0) {
             $users = SolicitudPropuesta::select('id', 'created_at')->where('empresa_id', $request->empresa_id)->where( SolicitudPropuesta::raw('YEAR(created_at)'), '=', $request->year)
-                ->get()
-                ->groupBy(function($date) {
-                    //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
-                    return Carbon::parse($date->created_at)->format('W'); // grouping by months
-                });
+            ->get()
+            ->groupBy(function($date) {
+            //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('W'); // grouping by months
+            });
+        }
+
+        else {
+            $users = SolicitudPropuesta::select('id', 'created_at')->where( SolicitudPropuesta::raw('YEAR(created_at)'), '=', $request->year)
+            ->get()
+            ->groupBy(function($date) {
+            //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+            return Carbon::parse($date->created_at)->format('W'); // grouping by months
+            });
+        }
+
+
+           
                 
                 foreach ($users as $key => $value) {
                     $usermcount[(int)$key] = count($value);
@@ -37,12 +53,26 @@ class GraficaSolicitudPropuestasController extends Controller
         }
 
         else {
-            $users = SolicitudPropuesta::select('id', 'created_at')->where('empresa_id', $request->empresa_id)->where( SolicitudPropuesta::raw('YEAR(created_at)'), '=', $request->year)
+           
+            
+            if ($request->empresa_id>0) {
+                $users = SolicitudPropuesta::select('id', 'created_at')->where('empresa_id', $request->empresa_id)->where( SolicitudPropuesta::raw('YEAR(created_at)'), '=', $request->year)
                 ->get()
                 ->groupBy(function($date) {
-                    //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
-                    return Carbon::parse($date->created_at)->format('m'); // grouping by months
+                //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+                return Carbon::parse($date->created_at)->format('W'); // grouping by months
                 });
+            }
+    
+            else {
+                $users = SolicitudPropuesta::select('id', 'created_at')->where( SolicitudPropuesta::raw('YEAR(created_at)'), '=', $request->year)
+                ->get()
+                ->groupBy(function($date) {
+                //return Carbon::parse($date->created_at)->format('Y'); // grouping by years
+                return Carbon::parse($date->created_at)->format('W'); // grouping by months
+                });
+            }
+
                 
                 foreach ($users as $key => $value) {
                     $usermcount[(int)$key] = count($value);

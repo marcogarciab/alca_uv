@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Actas Servicio')
+@section('title', 'Actas Verificación')
 
 @section('content_header')
-    <h1>Crear Acta Servicio</h1>
+    <h1>Crear Acta de Verificación</h1>
 @stop
 
 @section('content')

@@ -18,66 +18,74 @@
         </div>
     @endif
 
-    
-    {{ Form::open(array('route' => 'solicitud_propuestas.store', 'files' => true)) }}
 
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-        <div class="form-group">
-            {!! Form::label('empresa_id ', 'Empresa') !!}
-            {!! Form::select('empresa_id', $empresas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una Empresa']) !!}
+    {{ Form::open(['route' => 'solicitud_propuestas.store', 'files' => true]) }}
+
+
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="row gutters">
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        {!! Form::label('empresa_id ', 'Empresa') !!}
+                        {!! Form::select('empresa_id', $empresas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una Empresa']) !!}
+                    </div>
+
+                    @error('empresa_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+
+                    <div class="form-group">
+                        {!! Form::label('norma_id', 'Norma') !!}
+                        {!! Form::select('norma_id', $normas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una Norma']) !!}
+                    </div>
+
+                    @error('norma_id ')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+
+                    <div class="form-group">
+                        {!! Form::label('verificacion_tipo_id', 'Tipo Verificación') !!}
+                        {!! Form::select('verificacion_tipo_id', $verificacion_tipos, null, ['class' => 'form-control', 'placeholder' => 'Seleccione un Tipo de Verificación']) !!}
+                    </div>
+
+                    @error('verificacion_tipo_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                </div>
+
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+
+                    <div class="form-group">
+                        {!! Form::label('path', 'Path') !!}
+                        {!! Form::file('path', ['class' => 'form-control']) !!}
+                    </div>
+
+                    @error('path')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
+                    {!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
-
-        @error('empresa_id')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-        
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-
-        <div class="form-group">
-            {!! Form::label('norma_id', 'Norma') !!}
-            {!! Form::select('norma_id', $normas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una Norma']) !!}
-        </div>
-
-        @error('norma_id ')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-
-        <div class="form-group">
-            {!! Form::label('verificacion_tipo_id', 'Tipo Verificación') !!}
-            {!! Form::select('verificacion_tipo_id', $verificacion_tipos, null, ['class' => 'form-control', 'placeholder' => 'Seleccione un Tipo de Verificación']) !!}
-        </div>
-
-        @error('verificacion_tipo_id')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-
-    </div>
-
-
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-
-        <div class="form-group">
-            {!! Form::label('path', 'Path') !!}
-            {!! Form::file('path', ['class' => 'form-control']) !!}
-        </div>
-
-        @error('path')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-
     </div>
 
     <br>
 
-    {!! Form::submit('Crear Tipo Verificación', ['class' => 'btn btn-primary']) !!}
-
-    {!! Form::close() !!}
 
 @stop
 

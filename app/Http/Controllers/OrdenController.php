@@ -74,6 +74,7 @@ class OrdenController extends Controller
      */
     public function show(Orden $ordene)
     {
+        //return 'nada';
         $propuestas = Propuesta::all()->pluck('numero_control','id');
         $verificadores = Verificador::all()->pluck('nombre','id');
        

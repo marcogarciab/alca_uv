@@ -1,70 +1,58 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar ordenes')
+@section('title', 'Dictámenes')
 
 @section('content_header')
-    <h1>Editar Orden de Servicio</h1>
+    <h1>Crear Dictamen</h1>
 @stop
 
 @section('content')
 
-
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
-    {!! Form::model($ordene, ['route' => ['ordenes.update', $ordene], 'method' => 'put', 'files' => true]) !!}
+    {{ Form::open(array('route' => 'dictamenes.store', 'files' => true)) }}
 
     <div class="card h-100">
         <div class="card-body">
             <div class="row gutters">
 
-
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                        {!! Form::label('codigo_servicio', 'Código Servicio') !!}
-                        {!! Form::number('codigo_servicio', null, ['class' => 'form-control', 'placeholder' => 'Inserte Código Servicio']) !!}
+                        {!! Form::label('numero', 'Número Dictamen') !!}
+                        {!! Form::number('numero', null, ['class' => 'form-control', 'placeholder' => 'Inserte Número Dictamen']) !!}
                     </div>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         {!! Form::label('created_at', 'Fecha de creación') !!}
-                        {!! Form::date('created_at', $ordene->created_at, ['class' => 'form-control','disabled']) !!}
+                        {!! Form::date('created_at', null, ['class' => 'form-control','disabled']) !!}
                     </div>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         {!! Form::label('updated_at', 'Fecha de Actualización') !!}
-                        {!! Form::date('updated_at', $ordene->updated_at, ['class' => 'form-control','disabled']) !!}
+                        {!! Form::date('updated_at', null, ['class' => 'form-control','disabled']) !!}
                     </div>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 
                     <div class="form-group">
-                        {!! Form::label('propuesta_id', 'Propuesta') !!}
-                        {!! Form::select('propuesta_id', $propuestas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione Solicitud Propuesta a Atender']) !!}
+                        {!! Form::label('acta_id', 'Acta de Verificación') !!}
+                        {!! Form::select('acta_id', $actas, null, ['class' => 'form-control', 'placeholder' => 'Seleccione Acta de Verificación']) !!}
                     </div>
                 
-                    @error('solicitud_propuesta_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                
-                </div>
-
-
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-
-                    <div class="form-group">
-                        {!! Form::label('verificadore_id', 'Verificador que realiza Verificación') !!}
-                        {!! Form::select('verificadore_id', $verificadores, null, ['class' => 'form-control', 'placeholder' => 'Seleccione Verificador que revisó propuesta']) !!}
-                    </div>
-                
-                    @error('verificadore_id ')
+                    @error('acta_id')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 
@@ -72,11 +60,10 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                        {!! Form::label('fecha_verificacion', 'Fecha de Verificación') !!}
-                        {!! Form::date('fecha_verificacion', $ordene->fecha_verificacion, ['class' => 'form-control']) !!}
+                        {!! Form::label('es_aprobado', 'Es Aprobado?') !!}
+                        <div>{!! Form::checkbox('es_aprobado', null, ['class' => 'form-control', 'placeholder' => '']) !!}</div>
                     </div>
                 </div>
-
 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 
@@ -92,17 +79,16 @@
                 </div>
             </div>
 
-            {!! Form::submit('Editar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
         </div>
     </div>
-
-
     <br>
 
-@stop
+   
 
+@stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -110,6 +96,6 @@
 
 @section('js')
     <script>
-        console.log();
+        console.log('Hi!');
     </script>
 @stop

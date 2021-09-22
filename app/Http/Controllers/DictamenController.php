@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Acta;
 use App\Models\Dictamen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DictamenController extends Controller
 {
@@ -50,10 +51,18 @@ class DictamenController extends Controller
             $url = str_replace("public", "storage", $archivo);
         }
 
+        if ($request->has('es_aprobado') == 1) {
+            $request->es_aprobado = true;
+        }
+        else {
+            $request->es_aprobado = false;
+        }
+
             $dictamen = Dictamen::create([ 
                 'numero' => request('numero'),
                 'acta_id' => request('acta_id'),
                 'path' => $url,
+                'es_aprobado' => $request->es_aprobado,
             ]);
             
             return redirect()->route('dictamenes.index')->with('info','Dictamen Agregado');
@@ -65,10 +74,15 @@ class DictamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Dictamen $dictamen)
+    public function show(Dictamen $dictamene)
     {
         $actas = Acta::all()->pluck('numero','id');
-        return view('dictamen.show',compact('dictamen','actas'));
+
+        $url = Storage::url($dictamene->path);
+
+        $url =str_replace("/storage/", "/", $url); 
+
+        return view('dictamen.show',compact('dictamene','actas','url'));
     }
 
     /**
@@ -77,10 +91,15 @@ class DictamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dictamen $dictamen)
+    public function edit(Dictamen $dictamene)
     {
         $actas = Acta::all()->pluck('numero','id');
-        return view('dictamen.create', compact('dictamen','actas'));
+
+        $url = Storage::url($dictamene->path);
+
+        $url =str_replace("/storage/", "/", $url); 
+
+        return view('dictamen.edit', compact('dictamene','actas','url'));
     }
 
     /**
@@ -90,16 +109,24 @@ class DictamenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dictamen $dictamen)
+    public function update(Request $request, Dictamen $dictamene)
     {
+        //return $request;
         $validated = $request->validate([
             'numero' => 'required',
-            'es_aprobado' => 'required',
             'acta_id' => 'required',
-            'path' => 'path',
+            'path' => 'required',
         ]);
+        
+        $dictamen = Dictamen::find($dictamene->id);
 
-        $dictamen = Dictamen::find($dictamen->id);
+
+        if ($request->has('es_aprobado') == 1) {
+            $request->es_aprobado = true;
+        }
+        else {
+            $request->es_aprobado = false;
+        }
 
         if($request->hasFile('path')){
             $archivo =  $request->file('path')->store('/public');
@@ -112,7 +139,9 @@ class DictamenController extends Controller
         $dictamen->acta_id = $request->acta_id;
         $dictamen->save();
 
-        return redirect()->route('dictamenes.edit', compact('dictamen'))->with('info','Se actualizaron los datos del Dictamen');
+    
+
+        return redirect()->route('dictamenes.edit', compact('dictamene'))->with('info','Se actualizaron los datos del Dictamen');
     }
 
     /**

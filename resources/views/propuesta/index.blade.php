@@ -3,7 +3,7 @@
 @section('title', 'Lista Propuestas')
 
 @section('content_header')
-    <h1>Propuestas</h1>
+    <h1>Propuestas de Servicios</h1>
 @stop
 
 @section('content')
